@@ -1,0 +1,166 @@
+@use '../../utils'
+@use '../../shared'
+
+.home__hero 
+    position: relative
+    @include utils.flexbox(row, nowrap, flex-start, flex-start, flex-start)
+    padding: 4rem 0
+    min-height: 90dvh
+    @include utils.md 
+        padding: 0
+    @include utils.xl 
+        padding: 2rem 0
+    @include utils.xxxl 
+        padding: 5rem 0
+    @include utils.portrait
+        min-height: 75dvh
+    @include utils.lg-portrait
+        min-height: 65dvh
+    &__background
+        position: absolute 
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        z-index: 0
+        @include utils.flexbox(column, nowrap, space-between, stretch, stretch)
+        background-image: url('../images/bg-hero.webp')
+        background-size: cover 
+        background-position: center left
+        background-repeat: no-repeat 
+        @include utils.md
+            &::before 
+                content: ''
+                width: 50%
+                height: 100%
+                position: absolute 
+                top: 0
+                right: 0
+                z-index: 1
+                opacity: 0.1
+                background-image: url('../images/isotype-dark.svg')
+                background-size: 80% auto
+                background-position: center
+                background-repeat: no-repeat 
+                @include utils.portrait
+                    background-position: center right
+                    height: 55%
+        @include utils.md 
+            justify-content: flex-start
+        @include utils.sm-portrait
+            overflow: hidden
+        .home__hero__row
+            &--top
+                min-height: 21rem
+                @include utils.md
+                    min-height: 0
+                @include utils.md-portrait
+                    min-height: 30rem
+                .home__hero__column__left
+                    @include utils.md 
+                        background-color: var(--color-bg-black)
+            &--bottom
+                .home__hero__column__left
+                    flex-grow: 1
+            .home__hero__column__right 
+                display: none 
+                @include utils.md 
+                    display: block
+        .home__bg-video
+            width: 100%
+            height: 100%
+            position: absolute 
+            top: 0
+            left: 0
+            z-index: 0
+            video
+                width: 100%
+                height: 100%
+                object-fit: cover
+                object-position: center left
+                @include utils.md-portrait 
+                    object-position: center
+    &__content
+        width: 100%
+        position: relative 
+        z-index: 1
+        .container
+            height: 100%
+        .home__hero__row
+            gap: 1rem
+            @include utils.md 
+                gap: 0
+        .home__hero__column__left
+            @include utils.flexbox(column, nowrap, flex-start, flex-start, flex-start)
+            padding: 1em
+            gap: 1rem
+            @include utils.lg 
+                padding: 5.5rem 4.5rem 3.5rem 1.5rem
+                gap: 1rem
+            @include utils.xl 
+                padding: 5.5rem 4.5rem 3.5rem 1rem
+                gap: 2.5rem
+            @include utils.md-portrait
+                padding: 5rem 4.5rem 5rem 2rem
+                gap: 1rem
+        .home__hero__column__right
+            @include utils.flexbox(column, nowrap, flex-end, flex-end, flex-end)
+            padding: 1rem
+            gap: 1rem
+            @include utils.md 
+                padding: 1rem 1rem 3rem 3.5rem
+                gap: 2.5rem
+            @include utils.md-portrait
+                padding: 1rem 13rem 1rem 2rem
+        .home__hero__events
+            width: 100%
+            @include utils.flexbox(row, wrap, space-between, center, center)
+            gap: 1rem
+            font-size: 1rem
+            @include utils.md 
+                font-size: 1.5rem
+            @include utils.md-portrait 
+                font-size: 1.2rem 
+            
+    &__row
+        @include utils.flexbox(column, nowrap, center, stretch, stretch)
+        gap: 0
+        height: 50%
+        position: relative 
+        z-index: 2
+        @include utils.md 
+            flex-direction: row
+        @include utils.md-portrait 
+            flex-direction: column
+        &--top 
+            height: 40dvh
+            @include utils.md
+                height: 50%
+    &__column
+        width: 100%
+        flex-shrink: 0
+        flex-grow: 0
+        position: relative
+        @include utils.md 
+            width: 50%
+        @include utils.md-portrait 
+            width: 100%
+    &__video 
+        width: 100%
+        height: 100%
+        @include utils.flexbox(row, nowrap, center, center, center)
+        overflow: hidden
+        background: var(--color-bg-dark-gray)
+        video
+            // aspect-ratio: 16/9
+            width: 100%
+            height: 100%
+            object-fit: cover 
+            object-position: center
+            filter: grayscale(100%)
+            border: none
+    .dots-overlay
+        cursor: none
+        @media (pointer: coarse)
+            cursor: pointer
+

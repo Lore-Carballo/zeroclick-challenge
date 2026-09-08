@@ -1,0 +1,195 @@
+@use '../utils'
+
+// --------------------------------------------------
+// Display / heading text
+// --------------------------------------------------
+
+@mixin text-h1
+  font-size: 40px
+  line-height: 45px
+  letter-spacing: -2.1px
+  font-weight: 500
+  @include utils.md
+    font-size: 56px
+    line-height: 64px
+    letter-spacing: -2.94px
+
+@mixin text-h2
+  font-size: 36px
+  line-height: 40px
+  letter-spacing: -.81px
+  font-weight: 500
+  @include utils.md
+    font-size: 48px
+    line-height: 56px
+    letter-spacing: -1.08px
+
+@mixin text-h3
+  font-size: 24px
+  line-height: 32px
+  letter-spacing: -.63px
+  font-weight: 500
+  @include utils.md
+    font-size: 32px
+    line-height: 40px
+    letter-spacing: -.72px
+
+@mixin text-h4
+  font-size: 20px
+  line-height: 28px
+  letter-spacing: -.275px
+  font-weight: 500
+  @include utils.md
+    font-size: 24px
+    line-height: 32px
+    letter-spacing: -.3px
+
+@mixin text-h5
+  font-size: 18px
+  line-height: 24px
+  letter-spacing: -.2025px
+  font-weight: 500
+  @include utils.md
+    font-size: 20px
+    line-height: 28px
+    letter-spacing: -.225px
+
+@mixin text-h6
+  font-size: 16px
+  line-height: 22px
+  letter-spacing: -.2025px
+  font-weight: 500
+  @include utils.md
+    font-size: 16px
+    line-height: 22x
+    letter-spacing: -.2025px
+
+
+// --------------------------------------------------
+// Paragraphs
+// --------------------------------------------------
+
+@mixin text-paragraph
+  font-size: 15px
+  line-height: 24px
+  letter-spacing: -.19px
+  font-weight: 400
+  @include utils.md
+    font-size: 16px
+    letter-spacing: -.2px
+    
+@mixin text-paragraph-large
+  font-size: 17px
+  line-height: 24px
+  letter-spacing: -.21px
+  font-weight: 400
+  @include utils.md
+    font-size: 18px
+    letter-spacing: -.045px
+
+@mixin text-paragraph-medium
+  font-size: 16px
+  line-height: 24px
+  letter-spacing: -.2px
+  font-weight: 400
+  @include utils.md
+    font-size: 17px
+    letter-spacing: -.04px
+
+@mixin text-paragraph-small
+  font-size: 13px
+  line-height: 20px
+  letter-spacing: -.1625px
+  font-weight: 400
+  @include utils.md
+    font-size: 14px
+    letter-spacing: -.175px
+
+@mixin text-label
+  font-size: 12px
+  line-height: 14.4px
+  letter-spacing: -.0125em
+  font-weight: 400
+
+
+// --------------------------------------------------
+// Classes
+// --------------------------------------------------
+
+.text-h1
+  @include text-h1
+
+.text-h2
+  @include text-h2
+
+.text-h3
+  @include text-h3
+
+.text-h4
+  @include text-h4
+
+.text-h5
+  @include text-h5
+
+.text-h6
+  @include text-h6
+
+.text-paragraph
+  @include text-paragraph
+
+.text-paragraph-large
+  @include text-paragraph-large
+
+.text-paragraph-medium
+  @include text-paragraph-medium
+
+.text-paragraph-small
+  @include text-paragraph-small
+
+.text-label
+  @include text-label
+
+
+// --------------------------------------------------
+// Utilities
+// --------------------------------------------------
+
+.font-bitcount
+  font-family: var(--font-bitcount)
+
+.text-identity
+  font-family: var(--font-bitcount)
+  font-weight: 300
+  letter-spacing: .02em
+  text-transform: uppercase
+  line-height: 1
+
+.text-pretty
+  text-wrap: pretty
+
+.text-nowrap
+  white-space: nowrap
+
+.text-white
+  color: var(--color-text-white)
+
+.text-gray
+  color: var(--color-text-gray)
+
+.text-gray-light
+  color: var(--color-text-gray-light)
+
+.text-secondary
+  color: var(--color-text-secondary)
+
+.text-muted
+  color: var(--color-text-tertiary)
+
+.text-accent
+  color: var(--color-zero-click-2026-accent)
+
+.text-zc-primary
+  color: var(--color-zero-click-2026-primary)
+
+.text-zc-accent
+  color: var(--color-zero-click-2026-accent)

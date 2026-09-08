@@ -1,0 +1,14 @@
+@use '../utils'
+
+.social__media
+    width: auto
+    @include utils.flexbox(row, nowrap, flex-end, flex-end, flex-end)
+    gap: 1.6rem 
+    li 
+        width: 1.8rem 
+        transition: all 0.3s ease
+        &:hover 
+            @media (hover: hover) and (pointer: fine)
+                filter: brightness(0)
+                opacity: 0.6
+            

@@ -1,0 +1,87 @@
+@use '../utils'
+
+// --------------------------------------------------
+// Base
+// --------------------------------------------------
+
+.button
+  position: relative
+  z-index: 5
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  width: max-content
+  min-height: 32px
+  padding: 6px 12px
+  border: 0
+  border-radius: 8px
+  outline: 1px solid var(--color-border-dark)
+  background-color: transparent
+  color: var(--color-text-white)
+  font-family: var(--font-inter)
+  font-size: 14px
+  line-height: 20px
+  letter-spacing: .0075em
+  font-weight: var(--font-weight-medium)
+  text-align: center
+  text-decoration: none
+  white-space: nowrap
+  cursor: pointer
+  transition: color .2s ease-in-out, background-color .2s ease-in-out, outline-color .2s ease-in-out, opacity .2s ease-in-out, transform .2s ease-in-out
+  &:hover 
+    @media (hover: hover) and (pointer: fine)
+      opacity: .7
+  &:focus-visible
+    outline: 2px solid var(--color-bg-secondary)
+    outline-offset: 3px
+  &:active
+    transform: scale(.97)
+  &:disabled
+    pointer-events: none
+    opacity: .4
+
+
+// --------------------------------------------------
+// Outline
+// --------------------------------------------------
+
+.button--outline
+  background-color: transparent
+  color: var(--color-text-white)
+  outline-color: var(--color-border-dark)
+  &:hover 
+    @media (hover: hover) and (pointer: fine)
+      outline-color: var(--color-text-gray-light)
+
+
+// --------------------------------------------------
+// Light
+// --------------------------------------------------
+
+.button--light
+  min-height: max-content
+  padding: 8px 16px
+  background-color: var(--color-bg-light)
+  color: var(--color-text-dark)
+  font-size: 14px
+  line-height: 20px
+  letter-spacing: -.0125em
+  outline: none
+  @include utils.lg
+    font-size: 16px
+    line-height: 24px
+  &:hover 
+    @media (hover: hover) and (pointer: fine)
+      opacity: .7
+  &:active
+    transform: scale(.97)
+
+
+// --------------------------------------------------
+// Accent
+// --------------------------------------------------
+
+.button--accent
+  background-color: var(--color-zero-click)
+  color: var(--color-bg-black)
+  outline-color: transparent

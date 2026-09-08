@@ -1,0 +1,12 @@
+@use '../utils'
+
+.page__wrapper
+    width: 100%
+    max-width: 100vw 
+    min-height: 100vh 
+    @include utils.flexbox(row, wrap, flex-start, flex-start, flex-start)
+    @include utils.md
+        overflow: hidden
+
+.page__content 
+    width: 100% 

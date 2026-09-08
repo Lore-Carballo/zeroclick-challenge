@@ -1,0 +1,47 @@
+///////////Breakpoints///////////
+$breakpoint-sm: 40rem //640px
+$breakpoint-md: 48rem  //768px
+$breakpoint-lg: 64rem //1024px
+$breakpoint-xl: 80rem //1280px
+$breakpoint-xxl: 96rem //1536px
+$breakpoint-xxxl: 120rem //1920px
+
+@mixin portrait
+  @media (orientation: portrait)
+    @content
+
+@mixin sm
+  @media (min-width: $breakpoint-sm)
+    @content
+
+@mixin sm-portrait
+  @media (min-width: $breakpoint-sm) and (orientation: portrait)
+    @content
+
+@mixin md
+  @media (min-width: $breakpoint-md)
+    @content
+
+@mixin md-portrait
+  @media (min-width: $breakpoint-md) and (orientation: portrait)
+    @content
+
+@mixin lg
+  @media (min-width: $breakpoint-lg)
+    @content
+  
+@mixin lg-portrait
+  @media (min-width: $breakpoint-lg) and (orientation: portrait)
+    @content
+
+@mixin xl
+  @media (min-width: $breakpoint-xl)
+    @content
+
+@mixin xxl
+  @media (min-width: $breakpoint-xxl)
+    @content
+
+@mixin xxxl
+  @media (min-width: $breakpoint-xxxl)
+    @content

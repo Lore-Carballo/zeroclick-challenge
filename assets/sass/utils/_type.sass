@@ -1,0 +1,71 @@
+@use 'colors'
+
+// Fonts
+$baseFont: 'Neue Montreal', sans-serif
+$altFont: 'mundial', $baseFont, sans-serif
+
+// Font weights (Neue Haas Grotesk Display)
+$font-thin: 100
+$font-extralight: 200
+$font-light: 300
+$font-regular: 400
+$font-medium: 500
+$font-semibold: 600
+$font-bold: 700
+$font-black: 900
+
+.font--thin
+    font-weight: $font-thin!important
+.font--extralight
+    font-weight: $font-extralight!important
+.font--light
+    font-weight: $font-light!important
+.font--regular
+    font-weight: $font-regular!important
+.font--medium
+    font-weight: $font-medium!important
+.font--semibold
+    font-weight: $font-semibold!important
+.font--bold
+    font-weight: $font-bold!important
+.font--black
+    font-weight: $font-black!important
+
+strong
+    font-weight: $font-medium
+
+//Alternative fonts
+.font--alt 
+    font-family: $altFont
+
+//Text Alignment
+.text--center 
+    text-align: center!important 
+.text--left 
+    text-align: left!important 
+.text--right 
+    text-align: right!important 
+
+//Text Transform
+.text--uppercase 
+    text-transform: uppercase!important 
+
+// Text Color
+.text--accent 
+    color: colors.$color-blue!important
+
+//List styles
+// ul, ol 
+//     &.list--bulletted
+//         list-syle: disc!important
+//         li 
+//             position: relative
+//             &::before 
+//                 content: ''
+//                 width: 0.8rem
+//                 height: 0.8rem
+//                 border-radius: 100%
+//                 background-color: $color-primary 
+//                 position: absolute 
+//                 left: 0
+//                 top: calc(50% - 0.4rem)

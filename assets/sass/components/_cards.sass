@@ -1,0 +1,264 @@
+@use '../utils'
+
+.card
+    &--event 
+        outline: 1px solid var(--color-border-dark)
+        overflow: hidden
+        &:hover 
+            @media (hover: hover) and (pointer: fine)
+                .card--event__background 
+                    &::before 
+                        opacity: 0.5
+                    &::after 
+                        opacity: 0.5
+        &__background 
+            width: 100%
+            aspect-ratio: 1/1
+            position: absolute 
+            top: 0 
+            left: 0
+            z-index: 0
+            background-color: var(--color-bg-black)
+            background-size: 95% auto
+            background-repeat: no-repeat
+            background-position: top right 
+            &::before 
+                content: '' 
+                width: 100%
+                height: 100% 
+                background: linear-gradient(90deg,rgba(114, 92, 115, 0) 0%, rgba(114, 92, 115, 1) 100%)
+                position: absolute 
+                top: 0
+                left: 0
+                z-index: 2
+                mix-blend-mode: plus-lighter
+                opacity: 0
+                transition: all 0.3s ease-out
+            &::after 
+                content: '' 
+                width: 100%
+                height: 100% 
+                background-image: url('../images/bg-grain.webp')
+                background-size: cover 
+                background-position: center 
+                background-repeat: no-repeat 
+                position: absolute 
+                top: 0
+                left: 0
+                z-index: 3
+                mix-blend-mode: overlay
+                opacity: 0
+                transition: all 0.3s ease-out
+        &__content 
+            width: 100%
+            height: 100%
+            position: relative 
+            z-index: 4
+            padding: 3rem 1.2rem
+            @include utils.flexbox(column, wrap, flex-end, flex-start, flex-start)
+            gap: 0.7rem
+            @include utils.md
+                padding: 3.5rem 2rem
+            &::after 
+                content: '' 
+                width: 100%
+                height: 100% 
+                background: linear-gradient(90deg,rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 50%)
+                position: absolute 
+                top: 0
+                left: 0
+                z-index: -1
+            .button 
+                margin-top: 1.5rem
+        &__state 
+            position: absolute 
+            top: 1.2rem
+            right: 1rem
+            z-index: 3
+            @include utils.md 
+                right: auto
+                top: 2rem
+                left: 1.5rem
+        &__data 
+            position: absolute 
+            bottom: 1.2rem
+            right: 1rem
+            z-index: 3
+            @include utils.md
+                bottom: 1.8rem
+                right: 2rem
+        &--past 
+            .card--event__background 
+                background-size: 75% auto
+                background-position: top right
+            .card--event__content
+                &::after 
+                    background: linear-gradient(90deg,rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 70%)
+            &:hover 
+                @media (hover: hover) and (pointer: fine)
+                    .card--event__background 
+                        &::before 
+                            opacity: 0.25
+    &--information 
+        background: var(--color-bg-black)
+        outline: 1px solid var(--color-border-dark)
+        overflow: hidden
+        padding: 2rem 1.5rem
+        @include utils.flexbox(column, wrap, flex-start, flex-start, flex-start)
+        gap: 0.7rem
+        @include utils.md 
+            padding: 2.2rem 1.5rem 2rem
+        &--row 
+            @include utils.flexbox(row, nowrap, space-between, center, center)
+            padding: 1.5rem
+            @include utils.md 
+                padding: 2rem
+        &__time 
+            font-size: 1.5rem
+        &--number 
+            height: 100%
+            span 
+                font-size: 2.5rem
+                display: block
+                margin-top: 0.2rem
+                @include utils.md 
+                    font-size: 2rem
+    &--logo--centered
+        height: 128px
+        background: var(--color-bg-black)
+        outline: 1px solid var(--color-border-dark)
+        color: var(--color-text-white)
+        overflow: hidden
+        padding: 1rem
+        @include utils.flexbox(column, wrap, center, center, center)
+    &--faq
+        width: 100%
+        background: var(--color-bg-black)
+        outline: 1px solid var(--color-border-dark)
+        &__header
+            width: 100%
+            @include utils.flexbox(row, nowrap, space-between, center, center)
+            gap: 1.5rem
+            padding: 1.5rem 1.5rem
+            color: var(--color-text-white)
+            border: 0
+            text-align: left
+            cursor: pointer
+            @include utils.md 
+                padding: 1.5rem 2rem
+        &:hover
+            .card--faq__icon
+                color: var(--color-text-gray-light)
+        &__question
+            flex: 1
+            text-wrap: balance
+        &__icon
+            width: 1rem
+            height: 1rem
+            flex-shrink: 0
+            color: #414141
+            transition: transform .25s utils.$ease-out-quad, color .25s utils.$ease-out-quad
+        &__body
+            display: grid
+            grid-template-rows: 0fr
+            opacity: 0
+            transform: translateY(10px)
+            filter: blur(4px)
+            transition: grid-template-rows .35s utils.$ease-out-quad, opacity .3s utils.$ease-out-quad, transform .35s utils.$ease-out-quad, filter .35s utils.$ease-out-quad
+        &__body-inner
+            min-height: 0
+            overflow: hidden
+        &__answer
+            padding: 0 1.5rem 1.5rem
+            text-wrap: pretty
+            @include utils.md 
+                padding: 0 2rem 2rem 2rem
+        &.is-open
+            .card--faq__icon
+                transform: rotate(180deg)
+            .card--faq__body
+                grid-template-rows: 1fr
+                opacity: 1
+                transform: translateY(0)
+                filter: blur(0)
+    &--session 
+        background: var(--color-bg-black)
+        outline: 1px solid var(--color-border-dark)
+        overflow: hidden
+        height: 100%
+        @include utils.flexbox(column, nowrap, space-between, stretch, stretch)
+        cursor: pointer
+        &:hover 
+            @media (hover: hover) and (pointer: fine)
+                .card--session__image
+                    img 
+                        filter: grayscale(1) contrast(1.5)
+                        opacity: 1
+                    &::before 
+                        opacity: 0.5
+                    &::after 
+                        opacity: 0.5
+        &__image 
+            position: relative 
+            cursor: none
+            @media (pointer: coarse)
+                cursor: pointer
+            img 
+                transition: all 0.3s ease-out
+                opacity: 0.8
+            &::before 
+                content: '' 
+                width: 100%
+                height: 100% 
+                background: linear-gradient(90deg,rgba(114, 92, 115, 0) 0%, rgba(114, 92, 115, 1) 100%)
+                position: absolute 
+                top: 0
+                left: 0
+                z-index: 2
+                mix-blend-mode: plus-lighter
+                opacity: 0
+                transition: all 0.3s ease-out
+            &::after 
+                content: '' 
+                width: 100%
+                height: 100% 
+                background-image: url('../images/bg-grain.webp')
+                background-size: cover 
+                background-position: center 
+                background-repeat: no-repeat 
+                position: absolute 
+                top: 0
+                left: 0
+                z-index: 3
+                mix-blend-mode: overlay
+                opacity: 0
+                transition: all 0.3s ease-out
+        &__content
+            padding: 1.5rem
+            flex-grow: 1
+            @include utils.flexbox(column, wrap, space-between, stretch, stretch)
+            gap: 1.5rem
+        &__title 
+            margin-bottom: 0.5rem
+        &__footer 
+            padding-top: 1rem 
+            border-top: 1px solid var(--color-border-dark)
+            @include utils.flexbox(column, nowrap, flex-start, flex-end, flex-end)
+            gap: 1rem
+            @include utils.md
+                @include utils.flexbox(row, nowrap, space-between, flex-end, flex-end)
+            .card--session__speakers
+                @include utils.flexbox(column, nowrap, flex-start, stretch, stretch)
+                gap: 0.5rem
+                width: 100%
+                @include utils.md
+                    width: auto
+                .card--session__speaker__name
+                    margin-bottom: 0.25rem
+                .card--session__speaker__bio
+                    font-size: 0.75rem
+            button 
+                font-size: 14px 
+                line-height: 20px
+                padding: 0.35rem 0.6rem
+                border-radius: 0.35rem

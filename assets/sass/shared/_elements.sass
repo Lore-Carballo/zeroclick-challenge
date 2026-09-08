@@ -1,0 +1,183 @@
+@use '../utils'
+@use 'texts'
+
+.zero-click-logo
+    position: relative
+    display: flex
+    align-items: center
+    flex-shrink: 0
+    width: max-content
+    height: 36px
+    column-gap: 6px
+    opacity: 0
+    visibility: hidden
+    filter: blur(8px)
+    @include utils.sm
+        height: 40px
+        column-gap: 8px
+    @include utils.md
+        height: 64px
+        column-gap: 12px
+    &__wordmark
+        position: relative
+        display: inline-flex
+        white-space: nowrap
+        font-size: 28px
+        line-height: 32px
+        letter-spacing: -.275px
+        font-weight: 500
+        @include utils.sm
+            font-size: 28px
+            line-height: 36px
+            letter-spacing: -.63px
+        @include utils.md
+            font-size: 40px
+            line-height: 52px
+            // letter-spacing: -1.08px
+    &__word
+        position: relative
+        display: inline-flex
+        &.zero-click-logo__location
+            color: var(--color-bg-black)
+    &__space
+        display: inline-flex
+        width: .25em
+    &__letter
+        position: relative
+        display: inline-flex
+        opacity: 0
+        visibility: hidden
+    &__caret
+        position: absolute
+        top: 50%
+        left: 8px
+        width: 3px
+        height: 24px
+        background-color: var(--color-zero-click-2026-primary)
+        transform: translateY(-50%)
+        @include utils.sm
+            height: 27px
+            left: 12px
+        @include utils.md
+            height: 48px
+        &.is-blinking
+            animation: blink-caret 1s step-end infinite
+    &__year
+        position: relative
+        isolation: isolate
+        display: flex
+        align-items: center
+        justify-content: center
+        flex-shrink: 0
+        overflow: hidden
+        color: var(--color-zero-click-2026-accent)
+        font-size: 2.2rem 
+        margin-left: 0.8rem
+        margin-top: 0.2rem
+        font-weight: 300
+        line-height: 1
+        @include utils.sm
+            font-size: 3.5rem 
+            margin-left: 1.2rem
+            margin-top: 0.5rem
+
+.event__data-stamp 
+    @include utils.flexbox(column, nowrap, flex-end, center, center)
+    &__location
+        font-size: 3.5rem 
+        @include utils.md
+            font-size: 5rem 
+    &__date 
+        font-size: 1.9rem
+        margin-top: -0.6rem
+        @include utils.md
+            font-size: 2.8rem
+            margin-top: -0.8rem
+    &__unlocked 
+        font-size: 1rem
+        margin-top: -0.5rem
+        @include utils.md
+            font-size: 1.2rem
+            margin-top: -0.8rem
+
+.dots-overlay
+    position: absolute 
+    z-index: 1
+    @include utils.flexbox(column, nowrap, space-between, stretch, stretch)
+    &--full
+        width: calc(100% - 1.4rem)
+        height: calc(100% + 1.4rem)
+        top: -0.7rem
+        left: 0.7rem
+    &--half
+        width: calc(30% - 1.4rem)
+        height: calc(100% + 1.4rem)
+        top: -0.7rem
+        right: 0.7rem
+        @include utils.md
+            width: calc(50% - 1.4rem)
+        @include utils.sm-portrait
+            width: calc(40% - 1.4rem)
+        .dots-overlay__dot 
+            &:nth-of-type(1), &:nth-of-type(2)                          
+                display: none 
+                @include utils.md
+                    display: flex
+    &__row 
+        @include utils.flexbox(row, nowrap, space-between, center, center)            
+    &__dot 
+        width: 1.4rem 
+        height: 1.4rem 
+    &--primary
+        .dots-overlay__dot
+            background: var(--color-zero-click-2026-dark-primary)
+    &--accent
+        .dots-overlay__dot
+            background: var(--color-zero-click-2026-accent)
+
+.pill
+    @include texts.text-label
+    padding: 0.2rem 0.5rem 
+    border-radius: 1.5rem
+    line-height: 1
+    &--upcoming
+        background-color: var(--color-zero-click-2026-dark-accent)
+        color:  var(--color-zero-click-2026-accent)
+    &--past
+        background-color: var(--color-zero-click-2026-darkest-primary)
+        color:  var(--color-zero-click-2026-primary)
+
+.floating-cursor
+    position: absolute
+    z-index: 20
+    pointer-events: none
+    padding: 0.25rem 0.5rem
+    border-radius: 0.05rem
+    background: var(--color-zero-click-2026-accent)
+    color: var(--color-bg-black)
+    font-size: 0.75rem
+    font-weight: 300
+    white-space: nowrap
+    opacity: 0
+    visibility: hidden
+    will-change: transform
+    transition: opacity .2s ease-out,visibility .2s ease-out
+    @media (pointer: coarse)
+        display: none
+    &.is-visible
+        opacity: 1
+        visibility: visible
+    &__tooltip
+        display: inline-flex
+        align-items: center
+        justify-content: center
+    &__icon
+        display: block
+        width: 0.75rem
+        position: absolute 
+        top: -0.75rem
+        left: -0.75rem
+        transform: rotate(-45deg)
+    svg 
+        filter: invert(0.5)
+        

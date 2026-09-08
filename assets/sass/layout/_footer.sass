@@ -1,0 +1,85 @@
+@use '../utils'
+
+.site-footer
+  padding-top: 80px
+  color: var(--color-text-white)
+  background-color: var(--color-bg-black)
+  border-top: 1px solid var(--color-border-light)
+  @include utils.portrait
+    padding-inline: 0.5rem
+  @include utils.md-portrait
+    padding-inline: 2rem
+  &__grid
+    display: grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+    gap: 48px 32px
+    @include utils.md
+      grid-template-columns: repeat(4, minmax(0, 1fr))
+      column-gap: 48px
+  &__brand
+    grid-column: 1 / -1
+    @include utils.md
+      grid-column: 1
+      grid-row: 1
+  &__logo
+    display: inline-flex
+    align-items: center
+    color: var(--color-text-white)
+    &-svg
+      display: block
+      width: 110px
+      height: auto
+  &__title
+    margin-bottom: 16px
+    color: var(--color-text-white)
+    font-size: 14px
+    line-height: 20px
+    font-weight: var(--font-weight-regular)
+  &__links
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 12px
+    a
+      width: fit-content
+      color: var(--color-text-gray)
+      font-size: 14px
+      line-height: 20px
+      transition: opacity utils.$duration-fast utils.$ease-out-quad
+      &:hover
+        opacity: .7
+  &__group
+    @include utils.md
+      &:nth-of-type(2)
+        grid-column: 2
+        grid-row: 1
+      &:nth-of-type(3)
+        grid-column: 3
+        grid-row: 1
+      &:nth-of-type(4)
+        grid-column: 4
+        grid-row: 1
+    &--solutions
+      @include utils.md
+        grid-column: 2
+        grid-row: 2
+        margin-top: 16px
+    &--data
+      @include utils.md
+        grid-column: 3
+        grid-row: 2
+        margin-top: 16px
+    &--social
+      @include utils.md
+        grid-column: 4
+        grid-row: 2
+        margin-top: 16px
+  &__bottom
+    display: flex
+    align-items: center
+    justify-content: space-between
+    margin-top: 80px
+    padding-block: 32px
+    color: var(--color-text-tertiary)
+    font-size: 14px
+    line-height: 20px

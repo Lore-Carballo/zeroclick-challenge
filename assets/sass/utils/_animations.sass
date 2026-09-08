@@ -1,0 +1,400 @@
+// ==================================================
+// MOTION TOKENS
+// ==================================================
+
+$ease-default: cubic-bezier(.25, .46, .45, .94)
+$ease-out-quad: cubic-bezier(.25, .46, .45, .94)
+$ease-out-expo: cubic-bezier(.19, 1, .22, 1)
+$ease-snap: cubic-bezier(.16, 1, .3, 1)
+
+$duration-fast: .2s
+$duration-default: .3s
+$duration-reveal: .6s
+$duration-reveal-soft: .9s
+$duration-cursor: 1s
+
+
+// ==================================================
+// FADE
+// ==================================================
+
+@keyframes simple-fade-in
+  from
+    opacity: var(--opacity-from, 0)
+
+  to
+    opacity: 1
+
+
+@keyframes simple-fade-out
+  from
+    opacity: 1
+
+  to
+    opacity: var(--opacity-to, 0)
+
+
+// ==================================================
+// STAGGERED REVEALS
+// Inspired by Profound's current motion system
+// ==================================================
+
+@keyframes stagger-fade-in
+  from
+    opacity: 0
+    filter: blur(8px)
+    transform: translateY(24px) rotateX(26deg)
+
+  to
+    opacity: 1
+    filter: blur(0)
+    transform: translateY(0) rotateX(0)
+
+
+@keyframes stagger-fade-in-soft
+  from
+    opacity: 0
+    filter: blur(3px)
+    transform: translateY(12px) rotateX(8deg)
+
+  to
+    opacity: 1
+    filter: blur(0)
+    transform: translateY(0) rotateX(0)
+
+
+// ==================================================
+// CONTENT REVEAL
+// ==================================================
+
+@keyframes content-fade-in
+  from
+    opacity: 0
+    filter: blur(4px)
+    transform: translateY(-5%) scale(.96)
+
+  to
+    opacity: 1
+    filter: blur(0)
+    transform: translateY(0) scale(1)
+
+
+@keyframes content-fade-out
+  from
+    opacity: 1
+    filter: blur(0)
+    transform: translateY(0) scale(1)
+
+  to
+    opacity: 0
+    filter: blur(4px)
+    transform: translateY(-5%) scale(.96)
+
+
+// ==================================================
+// CURSOR
+// Relevant to the existing Zero Click language
+// ==================================================
+
+@keyframes cursor-slide-in
+  from
+    opacity: .25
+    filter: blur(4px)
+    transform: translate(32px, 80px)
+
+  to
+    opacity: 1
+    filter: blur(0)
+    transform: translate(0, 0)
+
+
+@keyframes cursor-float
+  0%
+    transform: translate(0, 0)
+
+  33%
+    transform: translate(var(--float-x1, 3px), var(--float-y1, -2px))
+
+  66%
+    transform: translate(var(--float-x2, -2px), var(--float-y2, 4px))
+
+  100%
+    transform: translate(0, 0)
+
+
+@keyframes cursor-fade-out
+  from
+    opacity: 1
+    transform: translate(0, 0)
+
+  to
+    opacity: 0
+    transform: translate(20px, 40px)
+
+
+// ==================================================
+// TEXT CARET
+// Existing Profound / Zero Click primitive
+// ==================================================
+
+@keyframes blink-caret
+  0%,
+  50%
+    opacity: 1
+
+  51%,
+  100%
+    opacity: 0
+
+
+@keyframes caret-appear
+  to
+    opacity: 1
+
+// ==================================================
+// TEXT SELECTION / HIGHLIGHT
+// ==================================================
+
+@keyframes selection-grow
+  from
+    opacity: 0
+    transform: scaleX(.1)
+
+  to
+    opacity: 1
+    transform: scaleX(1)
+
+
+// ==================================================
+// BLINK
+// ==================================================
+
+@keyframes blink-opacity
+  0%
+    opacity: .2
+
+  50%
+    opacity: 1
+
+  100%
+    opacity: .2
+
+
+// ==================================================
+// ZERO CLICK GRADIENT
+// Existing motion token in Profound's current build
+// ==================================================
+
+@keyframes zero-click-gradient
+  from
+    transform: rotate(0deg)
+
+  to
+    transform: rotate(360deg)
+
+// ==================================================
+// ZERO CLICK LOGO REVEAL
+// Existing motion token in Profound's current build
+// ==================================================
+
+@keyframes zero-click-logo-reveal
+  from
+    opacity: 0
+    filter: blur(8px)
+
+  to
+    opacity: 1
+    filter: blur(0)
+
+@keyframes zero-click-letter-reveal
+  to
+    opacity: 1
+    visibility: visible
+    filter: blur(0)
+
+@keyframes caret-appear
+  to
+    opacity: 1
+
+// ==================================================
+// AMBIENT MOTION
+// ==================================================
+
+@keyframes shape-drift
+  from
+    transform: translate3d(
+      calc(var(--drift-x, 0px) * -1),
+      calc(var(--drift-y, 6px) * -1),
+      0
+    )
+
+  to
+    transform: translate3d(
+      var(--drift-x, 0px),
+      var(--drift-y, 6px),
+      0
+    )
+
+
+// ==================================================
+// GRID / PATTERN MOTION
+// ==================================================
+
+@keyframes grid-walk
+  from
+    transform: translate3d(0, 0, 0)
+
+  to
+    transform: translate3d(
+      0,
+      calc(var(--pattern-row-height, 20px) * var(--grid-walk-direction, 1)),
+      0
+    )
+
+
+// ==================================================
+// TYPEWRITER
+// ==================================================
+
+.typewriter
+  position: relative
+  display: inline-block
+  &__letter
+    opacity: 0
+    visibility: hidden
+    &.is-visible
+      opacity: 1
+      visibility: visible
+  &__caret
+    position: absolute
+    top: 50%
+    left: 6px
+    width: 2px
+    height: .9em
+    background-color: var(--color-zero-click)
+    transform: translateY(-50%)
+    transition: transform .01s linear
+    &.is-blinking
+      animation: blink-caret 1s step-end infinite
+
+
+// ==================================================
+// ENTRANCE ANIMATIONS
+// ==================================================
+.animation--in
+  transition: opacity .6s $ease-out-quad, transform .6s $ease-out-quad, filter .6s $ease-out-quad
+  &.bottom-up:not(.visible)
+    opacity: 0
+    transform: translateY(48px)
+  &.up-bottom:not(.visible)
+    opacity: 0
+    transform: translateY(-48px)
+  &.left-right:not(.visible)
+    opacity: 0
+    transform: translateX(-48px)
+  &.right-left:not(.visible)
+    opacity: 0
+    transform: translateX(48px)
+  &.fade-in:not(.visible)
+    opacity: 0
+  &.zoom-in:not(.visible)
+    opacity: 0
+    transform: scale(.96)
+  &.blur-out:not(.visible)
+    opacity: 0
+    filter: blur(8px)
+  &.visible
+    opacity: 1
+    transform: translate(0) scale(1)
+    filter: blur(0)
+
+
+// ==================================================
+// MIXINS
+// ==================================================
+
+@mixin fade-in($duration: $duration-default, $delay: 0s)
+  opacity: 0
+  animation: simple-fade-in $duration $ease-out-quad $delay forwards
+
+
+@mixin fade-out($duration: $duration-default, $delay: 0s)
+  animation: simple-fade-out $duration $ease-out-quad $delay forwards
+
+
+@mixin stagger-in($delay: 0s)
+  opacity: 0
+  animation: stagger-fade-in $duration-reveal $ease-out-quad $delay forwards
+
+
+@mixin stagger-in-soft($delay: 0s)
+  opacity: 0
+  animation: stagger-fade-in-soft $duration-reveal-soft $ease-out-quad $delay forwards
+
+
+@mixin content-in($delay: 0s)
+  opacity: 0
+  animation: content-fade-in $duration-default $ease-out-quad $delay forwards
+
+
+@mixin cursor-slide($delay: 0s)
+  opacity: 0
+  animation: cursor-slide-in $duration-cursor $ease-out-quad $delay forwards
+
+
+@mixin cursor-float($duration: 4s)
+  animation: cursor-float $duration ease-in-out infinite
+
+
+@mixin cursor-blink($duration: $duration-cursor)
+  animation: blink-caret $duration step-end infinite
+
+
+@mixin stagger-children($count: 8, $step: .08s)
+  @for $i from 1 through $count
+    &:nth-child(#{$i})
+      animation-delay: $i * $step
+
+
+// ==================================================
+// OPTIONAL UTILITY CLASSES
+// Useful for quick prototyping
+// ==================================================
+
+.animate--fade-in
+  @include fade-in
+
+
+.animate--stagger-in
+  @include stagger-in
+
+
+.animate--stagger-in-soft
+  @include stagger-in-soft
+
+
+.animate--cursor-slide
+  @include cursor-slide
+
+
+.animate--cursor-float
+  @include cursor-float
+
+
+.animate--cursor-blink
+  @include cursor-blink
+
+
+// ==================================================
+// ACCESSIBILITY
+// ==================================================
+
+@media (prefers-reduced-motion: reduce)
+  *,
+  *::before,
+  *::after
+    scroll-behavior: auto !important
+    animation-duration: .01ms !important
+    animation-delay: 0s !important
+    animation-iteration-count: 1 !important
+    transition-duration: .01ms !important
