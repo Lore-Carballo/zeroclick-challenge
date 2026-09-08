@@ -3424,8 +3424,8 @@ body.modal-open {
   }
 }
 .event__information__video iframe {
-  height: 100%;
-  width: auto;
+  height: auto;
+  width: 100%;
   aspect-ratio: 16/9;
   filter: grayscale(1);
   border: none;
