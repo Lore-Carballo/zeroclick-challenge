@@ -2100,6 +2100,8 @@ body.modal-open {
   color: var(--color-text-white);
   background-color: var(--color-bg-black);
   border-top: 1px solid var(--color-border-light);
+  position: relative;
+  z-index: 5;
 }
 @media (orientation: portrait) {
   .site-footer {
