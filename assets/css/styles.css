@@ -3340,8 +3340,15 @@ body.modal-open {
     top: 0;
   }
 }
+.event__hero.scrolled .event__hero__top {
+  margin-bottom: 0.5rem;
+}
+.event__hero.scrolled .event__hero__footer {
+  margin-top: 0.5rem;
+  gap: 0.5rem;
+}
 .event__hero.scrolled .event__hero__wrapper {
-  padding: 5rem 2rem 2rem 0.75rem;
+  padding: 4.5rem 2rem 1.5rem 0.75rem;
   gap: 0;
 }
 @media (min-width: 40rem) {
