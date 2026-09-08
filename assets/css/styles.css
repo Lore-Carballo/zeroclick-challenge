@@ -4100,8 +4100,25 @@ body.challenge-intro-locked {
   }
 }
 .challenge-slide__background--content .information-block__list .card--information--row {
-  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  padding: 1.5rem 1rem 1rem 1rem;
   gap: 0.25rem 0.7rem;
+}
+@media (min-width: 120rem) {
+  .challenge-slide__background--content .information-block__list .card--information--row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding: 2rem;
+  }
 }
 @media (orientation: portrait) {
   .challenge-slide__background--content .information-block__list .card--information--row {
@@ -4118,11 +4135,21 @@ body.challenge-intro-locked {
   justify-content: flex-start;
   align-items: center;
   align-content: center;
-  gap: 0 1rem;
-  font-size: 1.2rem;
+  gap: 0 0.5rem;
+  font-size: 1rem;
+}
+@media (min-width: 120rem) {
+  .challenge-slide__background--content .card--information__group {
+    gap: 0 1rem;
+  }
 }
 .challenge-slide__background--content .card--information__group .card--information__time {
-  font-size: 1.2rem;
+  font-size: 1rem;
+}
+@media (min-width: 120rem) {
+  .challenge-slide__background--content .card--information__group .card--information__time {
+    font-size: 1.2rem;
+  }
 }
 .challenge-slide__background--content .card--information--web {
   display: flex;
