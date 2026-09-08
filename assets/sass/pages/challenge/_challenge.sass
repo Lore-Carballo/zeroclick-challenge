@@ -1,0 +1,495 @@
+@use '../../utils'
+@use '../../shared'
+
+body.challenge-intro-locked
+    overflow: hidden
+
+.page-challenge
+    .site-header 
+        @include utils.portrait
+            padding-block: 1rem
+    .site-header__left
+        @include utils.flexbox(row, nowrap, flex-start, center, center)
+        gap: 0.5rem
+        span 
+            font-weight: 300
+        h1 
+            margin-left: 0.5rem
+        @include utils.portrait
+            flex-direction: column 
+            align-items: flex-start
+            gap: 0.25rem
+            h1 
+                font-size: 0.8rem
+            span 
+                display: none
+    .site-header__actions
+        @include utils.portrait
+            flex-direction: column 
+            align-items: flex-end 
+            gap: 0
+
+.challenge-intro
+    width: 100%
+    height: 100dvh 
+    // padding: 8rem
+    position: relative
+    background-color: var(--color-bg-black)
+    // @include utils.flexbox(row, nowrap, flex-start, center, center)
+    display: flex
+    align-items: center
+    overflow: hidden
+    transition: background 1s utils.$ease-out-quad
+    .container
+        position: relative
+        z-index: 2
+        @include utils.portrait
+            padding: 4rem 2rem
+    &__title
+        max-width: 70vw
+        font-weight: 400
+        font-size: 36px
+        position: relative 
+        z-index: 2
+        @include utils.portrait
+            font-size: 28px
+    &::before 
+        content: '' 
+        width: 100%
+        height: 100% 
+        background-image: url('../images/bg-grain-xl.webp')
+        background-size: cover 
+        background-position: top right 
+        background-repeat: no-repeat
+        position: absolute 
+        top: 0
+        left: 0
+        z-index: 0
+        mix-blend-mode: lighten
+        opacity: 0.15
+    &.is-accent
+        background-image: linear-gradient(to right top, #725c73, #534f64, #394150, #27333a, #1b2325);
+    &__content
+        position: relative
+        z-index: 2
+    &__controls
+        display: flex
+        gap: 8px
+        margin-top: 32px
+    &__arrow
+        width: 40px
+        height: 40px
+        display: flex
+        align-items: center
+        justify-content: center
+        border: 1px solid var(--color-border-light)
+        background: transparent
+        color: var(--color-text-white)
+        cursor: pointer
+        transition: opacity .2s ease, background-color .2s ease
+        &:hover:not(:disabled)
+            background-color: rgb(var(--color-bg-light-rgb) / .08)
+        &:disabled
+            opacity: .25
+            cursor: default
+        &.is-hidden
+            opacity: 0
+            visibility: hidden
+            pointer-events: none
+    &__scroll-hint
+        margin-top: 24px
+        opacity: 0
+        transform: translateY(8px)
+        pointer-events: none
+        transition: opacity .4s utils.$ease-out-quad, transform .4s utils.$ease-out-quad
+        &.is-visible
+            opacity: 1
+            transform: translateY(0)
+    .dots-overlay
+        width: 25%
+        height: 95%
+        @include utils.portrait
+            width: calc(100% - 1.4rem)
+            height: 30% 
+            top: auto 
+            bottom: -4rem
+            .dots-overlay__dot 
+                &:nth-of-type(1)
+                    display: block                    
+
+.challenge-intro__caret
+    display: inline-block
+    width: 3px
+    height: .85em
+    margin-left: 4px
+    vertical-align: -.08em
+    background-color: var(--color-zero-click)
+    opacity: 1
+    &.is-blinking
+        animation: challenge-caret-blink 1s steps(1) infinite
+
+
+@keyframes challenge-caret-blink
+    0%, 45%
+        opacity: 1
+    46%, 100%
+        opacity: 0
+
+.js-zero-click-logo-reveal
+  opacity: 0
+  visibility: hidden
+  filter: none
+
+.challenge-slide
+    width: 100%
+    min-height: 100dvh 
+    // padding: 8rem
+    position: relative
+    background-color: var(--color-bg-black)
+    // @include utils.flexbox(row, nowrap, flex-start, center, center)
+    display: flex
+    align-items: center
+    overflow: hidden
+    transition: background 1s utils.$ease-out-quad
+    border-bottom: 1px solid var(--color-border-dark)
+    border-top: 1px solid var(--color-border-dark)
+    position: sticky 
+    top: 0
+    padding-top: 4rem
+    @include utils.portrait        
+        @include utils.flexbox(column-reverse, nowrap, flex-start, stretch, stretch)
+        position: relative 
+        top: auto
+        min-height: 50dvh
+    &:has(.challenge-slide__background--content)
+        padding-bottom: 4rem
+    &__title 
+        @include utils.portrait
+            font-size: 1.3rem
+    &--media
+        position: relative 
+        top: auto
+        @include utils.flexbox(column, nowrap, flex-start, stretch, stretch)
+        padding: 0
+        @include utils.portrait
+            min-height: 0
+        video, img 
+            width: 100%
+            height: auto
+        &::before 
+            display: none
+        &__group 
+            @include utils.flexbox(row, nowrap, flex-start, stretch, stretch)
+            width: 100%
+            min-height: 100dvh
+            gap: 0
+            @include utils.portrait
+                flex-direction: column 
+                flex-wrap: nowrap 
+                height: auto
+            img
+                width: 60%
+                height: 100%
+                object-fit: cover
+                @include utils.portrait
+                    width: 100%
+                    height: auto
+            .challenge-slide--media__video-group
+                width: 50%
+                position: relative 
+                @include utils.portrait
+                    width: 100%
+                video 
+                    filter: grayscale(1)
+                    width: 100%
+                    height: 100%
+                    object-fit: cover
+                    @include utils.portrait
+                        height: auto
+                        min-height: 40dvh
+                .event__data-stamp
+                    position: absolute 
+                    top: 50%
+                    left: 50%
+                    transform: translate(-50%, -50%)
+                &--30vw
+                    width: 30%
+                    @include utils.portrait
+                        width: 100%
+                &--30vw
+                    width: 40%
+                    @include utils.portrait
+                        width: 100%
+                    .event__data-stamp
+                        position: absolute 
+                        top: 4rem
+                        left: auto 
+                        right: 4rem
+                        transform: none
+                        text-align: right
+                        align-items: flex-end
+                        @include utils.portrait
+                            top: auto
+                            right: 2rem 
+                            bottom: 2rem
+                &.video-recap 
+                    &::before 
+                        content: '' 
+                        width: 100%
+                        height: 100%
+                        background: rgba(0,0,0,0.5)
+                        position: absolute 
+                        top: 0
+                        left: 0
+                        z-index: 1
+                    .event__data-stamp
+                        z-index: 2
+                        top: 50%
+                        left: 50%
+                        transform: translate(-50%, -50%) scale(2)
+            .challenge-slide--media__video
+                width: 50%
+                height: 100%
+                @include utils.portrait
+                    width: 100%
+                    height: auto
+                &--60vw 
+                    width: 60%
+                    @include utils.portrait
+                        width: 100%
+                &--70vw 
+                    width: 70%
+                    @include utils.portrait
+                        width: 100%
+                video 
+                    filter: grayscale(1)
+                    width: 100%
+                    height: 100%
+                    object-fit: cover
+                    @include utils.portrait
+                        height: auto
+                        min-height: 40dvh
+                &--color 
+                    video 
+                        filter: none
+        &__grid 
+            @include utils.flexbox(row, wrap, flex-start, stretch, stretch)
+            width: 100%
+            min-height: 100dvh
+            gap: 0
+            @include utils.portrait
+                flex-direction: column
+                flex-wrap: nowrap
+            &__item 
+                width: 50%
+                height: 50dvh
+                @include utils.flexbox(row, wrap, center, center, center)
+                @include utils.portrait
+                    width: 100%
+                    height: auto 
+                    aspect-ratio: 16/9
+                &:nth-of-type(1)
+                    background: var(--color-zero-click-2026-primary)
+                    .zero-click-logo__location
+                        color: var(--color-bg-dark-gray)
+                    .zero-click-logo__caret
+                        background-color: var(--color-zero-click-2026-dark-primary)     
+                &:nth-of-type(2)
+                    background: var(--color-zero-click-2026-accent)
+                    .zero-click-logo__word
+                        color: var(--color-bg-dark-gray)
+                    .zero-click-logo__year span 
+                        color: var(--color-zero-click-2026-dark-primary)    
+                    .zero-click-logo__caret
+                        background-color: var(--color-zero-click-2026-primary)     
+                &:nth-of-type(3)
+                    background: var(--color-zero-click-2026-dark-accent)
+                    .zero-click-logo__location
+                        color: var(--color-text-secondary)
+                    .zero-click-logo__caret
+                        background-color: var(--color-zero-click-2026-primary) 
+                &:nth-of-type(4)
+                    background: var(--color-zero-click-2026-dark-primary) 
+                    .zero-click-logo__caret
+                        background-color: var(--color-zero-click-2026-primary)                  
+    &::before 
+        content: '' 
+        width: 100%
+        height: 100% 
+        background-image: url('../images/bg-grain-xl.webp')
+        background-size: cover 
+        background-position: top right 
+        background-repeat: no-repeat
+        position: absolute 
+        top: 0
+        left: 0
+        z-index: 0
+        mix-blend-mode: lighten
+        opacity: 0.15
+    &__background 
+        width: 40%
+        height: 100%
+        position: absolute 
+        right: 0
+        top: 0
+        @include utils.portrait
+            width: 100%
+            position: relative 
+            height: auto 
+            top: auto 
+            right: auto
+        &__video
+            width: 100%
+            height: 100%
+            position: relative
+        video, img
+            width: 100%
+            height: 100%
+            object-fit: cover
+        .zero-click-logo
+            position: absolute 
+            z-index: 2
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+        &--content 
+            @include utils.flexbox(row, nowrap, flex-start, center, center)
+            padding: 4rem 
+            @include utils.portrait
+                padding: 0 1rem
+            .information-block__list
+                width: 95%
+                @include utils.xxxl
+                    width: 80%
+                @include utils.portrait
+                    width: 100%
+                &--2col
+                    @include utils.md 
+                        flex-direction: column
+                        .information-block__list__item
+                            width: 100%
+                    @include utils.xxl 
+                        flex-direction: row
+                        .information-block__list__item
+                            width: calc(50% - 0.5rem)
+                    @include utils.md-portrait 
+                        flex-direction: row
+                        .information-block__list__item
+                            width: calc(50% - 0.5rem)
+                .card--information--row 
+                    flex-wrap: wrap
+                    gap: 0.25rem 0.7rem
+                    @include utils.portrait
+                        flex-direction: column 
+                        justify-content: flex-start 
+                        align-items: flex-start
+                        flex-wrap: nowrap
+            .card--information__group
+                @include utils.flexbox(row, wrap, flex-start, center, center)
+                gap: 0 1rem 
+                font-size: 1.2rem
+                .card--information__time
+                    font-size: 1.2rem
+            .card--information--web
+                @include utils.flexbox(row, wrap, flex-start, flex-end, flex-end)
+                gap: 1rem 
+                position: relative 
+                @include utils.xxl 
+                    padding-right: 2rem
+                    @include utils.flexbox(column, nowrap, flex-start, flex-start, flex-start)
+                @include utils.portrait
+                    @include utils.flexbox(column, nowrap, flex-start, flex-start, flex-start)
+                .card--information__group
+                    @include utils.flexbox(column, nowrap, flex-start, flex-start, flex-start)
+                .card--information__title 
+                    margin-bottom: 0.25rem
+                .card--information__number
+                    position: absolute 
+                    top: 1.5rem
+                    right: 1.5rem 
+                    font-size: 2rem
+            .card--information--list
+                ul 
+                    list-style: initial
+                    @include utils.flexbox(column, nowrap, flex-start, stretch, stretch)
+                    gap: 0.25rem 
+                    padding-left: 1rem
+                    li
+                        width: 100%
+                        &::marker 
+                            color: var(--color-zero-click-2026-accent)
+    &__content 
+        @include utils.flexbox(column, nowrap, flex-start, stretch, stretch)
+        gap: 2rem
+        padding-right: 40%
+        z-index: 1
+        @include utils.portrait
+            padding: 4rem 1rem
+    &__number 
+        font-size: 3rem
+
+.pill-group
+    @include utils.flexbox(row, nowrap, flex-start, center, center)
+    gap: 0.5rem 
+    @include utils.portrait
+        gap: 0.25rem 
+        flex-wrap: wrap
+.pill--stack
+    padding:0.2rem  0.8rem 
+    background: var(--color-bg-black)
+    border-radius: 8px 
+    font-size: 1.1rem
+    @include utils.portrait
+        font-size: 0.9rem
+
+.challenge-outro
+    width: 100%
+    min-height: 100dvh 
+    position: relative
+    background-color: var(--color-bg-black)
+    display: flex
+    align-items: center
+    overflow: hidden
+    transition: background 1s utils.$ease-out-quad
+    .container
+        position: relative
+        z-index: 2
+    h2
+        font-weight: 400
+        font-size: 36px
+        position: relative 
+        z-index: 2
+        @include utils.portrait
+            font-size: 28px
+    &::before 
+        content: '' 
+        width: 100%
+        height: 100% 
+        background-image: url('../images/bg-grain-xl.webp')
+        background-size: cover 
+        background-position: top right 
+        background-repeat: no-repeat
+        position: absolute 
+        top: 0
+        left: 0
+        z-index: 0
+        mix-blend-mode: lighten
+        opacity: 0.15
+    &__content
+        position: relative
+        z-index: 2
+        @include utils.flexbox(column, nowrap, flex-start, stretch, stretch)
+        gap: 2rem
+        @include utils.portrait
+            padding: 4rem 1rem
+    .dots-overlay
+        width: 25%
+        height: 95%
+        @include utils.portrait
+            width: calc(100% - 1.4rem)
+            height: 30% 
+            top: auto 
+            bottom: -4rem
+            .dots-overlay__dot 
+                &:nth-of-type(1)
+                    display: block  
